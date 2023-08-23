@@ -15,6 +15,8 @@ class CliHttpx:
     async def get(self, url: str, headers: dict | None) -> Response:
         async with httpx.AsyncClient() as cli:
             response = await cli.get(url, headers=headers)
+            with open('/app/debug.txt', 'a+') as file:
+                file.write(response.text + "\n")
             return Response(
                 status_code=response.status_code,
                 text=response.text,
