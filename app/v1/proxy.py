@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.post('/get', response_model=Response)
 async def get_request(body: proxy.GetRequest):
-    with open(pathlib.Path(__file__).parent.resolve() + '/debug.txt', 'a') as file:
+    with open('/home/james/www/app/v1/debug.txt', 'a+') as file:
         file.write(body.url)
     return await CliHttpx().get(body.url, headers=body.headers)
 
